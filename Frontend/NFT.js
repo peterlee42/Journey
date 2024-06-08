@@ -13,6 +13,7 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(express.static('output'))
 
 app.get("/", function (req, res) {
     res.send("Hello World!");
@@ -166,6 +167,7 @@ const mintNft = async (CID, wallet) => {
             body: data
         })
         resData = await res.json()
+        console.log(resData)
         const contractAddress = resData.onChain.contractAddress
         console.log("NFT Minted, smart contract:", contractAddress)
     } catch (error) {
@@ -178,28 +180,34 @@ const main = async (file, name, description, external_url, wallet) => {
         const imageCID = await uploadImage(file)
         const metadataCID = await uploadMetadata(name, description, external_url, imageCID)
         await mintNft(metadataCID, wallet)
+        fs.rename(`./output/${name}.png`, `./output/${imageCID}.png`, ()=>{
+            
+        })
     } catch (error) {
         console.log(error)
     }
 }
 
-
 app.post("/generate_nft", async function (req, res) {
     const layersPath = path.join(process.cwd(), 'layers');
     let outputPath = path.join(process.cwd(), 'output');
     await generateNFTs(layersPath, outputPath, req.body.text);
-    await main(`./output/${req.body.text}.png`, req.body.text, `This is an NFT rewarded by the Journey app for visiting ${req.body.text}`, "https://jamhacks.ca", "0xc9947a55bDD4b1E0fE27fDA4EEc68C74505307b7");
+    await main(`./output/${req.body.text}.png`, req.body.text, `This is an NFT rewarded by the Journey app for visiting ${req.body.text}`, "https://jamhacks.ca", req.body.wallet);
     res.send(JSON.stringify({ "successful": true }));
 });
 
+app.post("/all_images", function(req, res){
+    res.send(JSON.stringify({ "successful": true }));
 
+    // res.send(JSON.stringify({"contents": [fs.readdirSync("./output")]}));
+})
 
 // test = async () => {
 //     try {
 //         const res = await fetch("http://localhost:3000/generate_nft", {
 //             method: 'POST',
 //             headers: { 'Content-Type': 'application/json' },
-//             body: JSON.stringify({ "text": "Church's Chicken" })
+//             body: JSON.stringify({ "text": "Church's Chicken", "wallet": "0xc9947a55bDD4b1E0fE27fDA4EEc68C74505307b7" })
 //         })
 //         resData = await res.json()
 //         console.log(resData)

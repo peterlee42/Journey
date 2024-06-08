@@ -24,7 +24,7 @@ function deg2rad(deg) {
 
 
 
-export default function MapScreen() {
+export default function MapScreen({ navigation }) {
     const [locDiff, setLocDiff] = useState(10);
 
     const [claimable, setClaimable] = useState('');
@@ -74,6 +74,33 @@ export default function MapScreen() {
         }
     }
 
+    const claim = async () => {
+        try {
+            navigation.navigate('Calendar')
+
+            const response = await fetch(
+                'https://e615-129-97-124-31.ngrok-free.app/generate_nft',
+                {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        "text": claimable,
+                        "wallet": "0xc9947a55bDD4b1E0fE27fDA4EEc68C74505307b7"
+                    }),
+                }
+            );
+            const json = await response.json();
+            console.log(json);
+            return json;
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     useEffect(() => {
         setTimeout(() => {
             (async () => {
@@ -113,7 +140,7 @@ export default function MapScreen() {
             }
         });
         if (best) {
-            setClaimable(best);
+            setClaimable(best.displayName.text);
         }
         else {
             setClaimable('');
@@ -147,7 +174,7 @@ export default function MapScreen() {
             </MapView>
             {(claimable != '') ?
                 <View className="bg-white w-[300] h-[70] rounded-2xl fixed bottom-[10%] items-center justify-center">
-                    <Text className="text-xl font-medium">Claim Checkpoint</Text>
+                    <Text className="text-xl font-medium" onPress={claim}>Claim Checkpoint</Text>
                 </View>
                 : <View></View>
             }
