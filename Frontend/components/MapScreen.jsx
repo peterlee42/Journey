@@ -89,6 +89,10 @@ export default function MapScreen({ navigation }) {
                     }),
                 }
             );
+            setPOIs(prevPOIs => prevPOIs.filter(marker => marker.displayName.text !== claimable));
+
+            setClaimable('');
+
             const json = await response.json();
             console.log(json);
             navigation.navigate('Calendar', {CID: json.toReturn})
@@ -107,7 +111,7 @@ export default function MapScreen({ navigation }) {
                     setErrorMsg('Permission to access location was denied');
                     return;
                 }
-                let locationa = await Location.watchPositionAsync({
+                let location = await Location.watchPositionAsync({
                     accuracy: Location.Accuracy.High,
                 }, (newlocation) => {
                     let locationDiff = getDistanceFromLatLonInKm(location.latitude, location.longitude, newlocation.latitude, newlocation.longitude)
