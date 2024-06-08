@@ -14,7 +14,7 @@ export default function Milestone({route}) {
             <Text style={styles.text} className="color-[#543DE4B0] text-xl font-semibold w-[50%]">Congrats on your new NFT!</Text>
             <Image source={require("../assets/lock.png")} className="h-10 w-10" />
         </View>
-        <Text className="pt-2 text-blue-600 underline" onPress={() => Linking.openURL('https://testnets.opensea.io/collection/journey-19')}>See it on OpenSea</Text>
+        <Text className="pt-2 text-blue-600 underline" onPress={() => Linking.openURL('https://testnets.opensea.io/collection/journey-19?search[sortAscending]=false&search[sortBy]=LAST_TRANSFER_DATE')}>See it on OpenSea</Text>
     </View>
 
   );
