@@ -5,23 +5,28 @@ module.exports = {
             probability: 1.0,
             options: [
                 {
-                    name: "Blue",
-                    file: "Background/Blue.png",
+                    name: "B1",
+                    file: "Background/B1.png",
                     weight: 1
                 },
                 {
-                    name: "Black",
-                    file: "Background/Black.png",
+                    name: "B2",
+                    file: "Background/B2.png",
                     weight: 1
                 },
                 {
-                    name: "Orange",
-                    file: "Background/Orange.png",
+                    name: "B3",
+                    file: "Background/B3.png",
                     weight: 1
                 },
                 {
-                    name: "Yellow",
-                    file: "Background/Yellow.png",
+                    name: "B4",
+                    file: "Background/B4.png",
+                    weight: 1
+                },
+                {
+                    name: "B5",
+                    file: "Background/B5.png",
                     weight: 1
                 }
             ]
