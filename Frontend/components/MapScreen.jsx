@@ -75,7 +75,7 @@ export default function MapScreen() {
     }
 
     useEffect(() => {
-        setTimeout(()=>{
+        setTimeout(() => {
             (async () => {
                 let { status } = await Location.requestForegroundPermissionsAsync();
                 if (status !== 'granted') {
@@ -101,7 +101,7 @@ export default function MapScreen() {
         });
     }, [location])
 
-    useEffect(()=>{
+    useEffect(() => {
         let minVal = 1000000000000;
         let best = false;
         POIs.map((val, index) => {
