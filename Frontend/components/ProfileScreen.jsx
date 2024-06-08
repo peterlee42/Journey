@@ -16,7 +16,7 @@ export default function ProfileScreen() {
                 <View style={styles.box}>
                     <View className="progress">
                         <Text style={styles.box_text}>
-                            Distance Travelled
+                            NFT Gallery
                         </Text>
                     </View>
 
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     box_text: {
         color: "black",
         fontFamily: "Inter",
-        fontWeight: "600",
+        fontWeight: "800",
         fontSize: 24,
         marginBottom: 10
     },
