@@ -22,7 +22,7 @@ export default function HomeScreen() {
             </View>
           </View>
           <View className="w-[90] h-[80] justify-center items-center">
-            <Text className="text-4xl text-white font-bold">23%</Text>
+            <Text className="text-6xl pt-5 text-white font-bold">7</Text>
           </View>
         </View>
       </View>
