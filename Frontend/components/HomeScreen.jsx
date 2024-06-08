@@ -53,7 +53,7 @@ export default function HomeScreen() {
         <View className="bg-[#A1AEF2] h-[100] w-[85%] rounded-[30px] flex-row">
           <View className="-[90%]">
             <Text className="pt-4 pl-7 text-xl font-medium">Calories Burned</Text>
-            <Text className="pt-1 pl-8 text-xl font-bold color-[#543DE4] opacity-70">1000 kcal</Text>
+            <Text className="pt-1 pl-8 text-xl font-bold color-[#543DE4] opacity-70">297 kcal</Text>
           </View>
           <View className="items-center">
             <Image source={require("../assets/running.png")} className="mt-4 ml-10 h-16 w-16"></Image>
