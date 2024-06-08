@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 export default function ProfileScreen() {
@@ -17,13 +17,23 @@ export default function ProfileScreen() {
                     NFT Collection
                 </Text>
                 <View style={styles.box}>
-                    <View style={styles.NFTs}>
-                        <Image source={require('../output/1.png')} style={styles.Image} />
-                        <Image source={require('../output/1.png')} style={styles.Image} />
-                        <Image source={require('../output/1.png')} style={styles.Image} />
-                        <Image source={require('../output/1.png')} style={styles.Image} />
-                        <Image source={require('../output/1.png')} style={styles.Image} />
-                        <Image source={require('../output/1.png')} style={styles.Image} />
+                    <View className='NFT Collection'>
+                        <ScrollView contentContainerStyle={styles.NFTs}>
+                            <Image source={require('../output/1.png')} style={styles.Image} />
+                            <Image source={require('../output/1.png')} style={styles.Image} />
+                            <Image source={require('../output/1.png')} style={styles.Image} />
+                            <Image source={require('../output/1.png')} style={styles.Image} />
+                            <Image source={require('../output/1.png')} style={styles.Image} />
+                            <Image source={require('../output/1.png')} style={styles.Image} />
+                            <Image source={require('../output/1.png')} style={styles.Image} />
+                            <Image source={require('../output/1.png')} style={styles.Image} />
+                            <Image source={require('../output/1.png')} style={styles.Image} />
+                            <Image source={require('../output/1.png')} style={styles.Image} />
+                            <Image source={require('../output/1.png')} style={styles.Image} />
+                            <Image source={require('../output/1.png')} style={styles.Image} />
+                            <Image source={require('../output/1.png')} style={styles.Image} />
+                            <Image source={require('../output/1.png')} style={styles.Image} />
+                        </ScrollView>
                     </View>
                 </View>
             </View>
@@ -92,6 +102,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-evenly'
+
     },
     Image: {
         width: 100,
@@ -99,4 +110,8 @@ const styles = StyleSheet.create({
         margin: 10,
     },
 
+    scrollView: {
+        backgroundColor: 'pink',
+        marginHorizontal: 20,
+    },
 });
