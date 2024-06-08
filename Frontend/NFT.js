@@ -94,46 +94,46 @@ let outputPath = path.join(process.cwd(), 'output');
 
 const uploadImage = async (file) => {
     try {
-      const data = new FormData()
-      data.append("file", fs.createReadStream(file))
-      data.append("pinataMetadata", '{"name": "pinnie"}')
-  
-      const res = await fetch("https://api.pinata.cloud/pinning/pinFileToIPFS", {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${JWT}`
-        },
-        body: data
-      })
-      resData = await res.json()
-      console.log("File uploaded, CID:", resData.IpfsHash)
-      return resData.IpfsHash
+        const data = new FormData()
+        data.append("file", fs.createReadStream(file))
+        data.append("pinataMetadata", '{"name": "pinnie"}')
+
+        const res = await fetch("https://api.pinata.cloud/pinning/pinFileToIPFS", {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${JWT}`
+            },
+            body: data
+        })
+        resData = await res.json()
+        console.log("File uploaded, CID:", resData.IpfsHash)
+        return resData.IpfsHash
     } catch (error) {
-      console.log(error)
+        console.log(error)
     }
-  }
+}
 
 const uploadMetadata = async (name, description, external_url, CID) => {
     try {
         const data = JSON.stringify({
-        pinataContent: {
-            name: `${name}`,
-            description: `${description}`,
-            external_url: `${external_url}`,
-            image: `ipfs://${CID}`,
-        },
-        pinataMetadata: {
-            name: "Pinnie NFT Metadata",
-        },
+            pinataContent: {
+                name: `${name}`,
+                description: `${description}`,
+                external_url: `${external_url}`,
+                image: `ipfs://${CID}`,
+            },
+            pinataMetadata: {
+                name: "Pinnie NFT Metadata",
+            },
         });
 
         const res = await fetch("https://api.pinata.cloud/pinning/pinJSONToIPFS", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${JWT}`
-        },
-        body: data
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${JWT}`
+            },
+            body: data
         })
         const resData = await res.json()
         console.log("Metadata uploaded, CID:", resData.IpfsHash)
@@ -145,27 +145,27 @@ const uploadMetadata = async (name, description, external_url, CID) => {
 
 const mintNft = async (CID, wallet) => {
     try {
-      const data = JSON.stringify({
-        recipient: `polygon-amoy:${wallet}`,
-        metadata: `https://gateway.pinata.cloud/ipfs/${CID}`
-      })
-      const res = await fetch("https://staging.crossmint.com/api/2022-06-09/collections/cbfff921-aabc-43cc-b131-d03fee5d43d0/nfts", {
-        method: 'POST',
-        headers: {
-          accept: 'application/json',
-          'content-type': 'application/json',
-          'x-client-secret': `${CROSSMINT_KEY}`,
-          'x-project-id': `${CROSSMINT_PROJECT}`
-        },
-        body: data
-      })
-      resData = await res.json()
-      const contractAddress = resData.onChain.contractAddress
-      console.log("NFT Minted, smart contract:", contractAddress)
+        const data = JSON.stringify({
+            recipient: `polygon-amoy:${wallet}`,
+            metadata: `https://gateway.pinata.cloud/ipfs/${CID}`
+        })
+        const res = await fetch("https://staging.crossmint.com/api/2022-06-09/collections/cbfff921-aabc-43cc-b131-d03fee5d43d0/nfts", {
+            method: 'POST',
+            headers: {
+                accept: 'application/json',
+                'content-type': 'application/json',
+                'x-client-secret': `${CROSSMINT_KEY}`,
+                'x-project-id': `${CROSSMINT_PROJECT}`
+            },
+            body: data
+        })
+        resData = await res.json()
+        const contractAddress = resData.onChain.contractAddress
+        console.log("NFT Minted, smart contract:", contractAddress)
     } catch (error) {
-      console.log(error)
+        console.log(error)
     }
-  }
+}
 
 const main = async (file, name, description, external_url, wallet) => {
     try {
