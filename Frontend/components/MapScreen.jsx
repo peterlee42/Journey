@@ -73,22 +73,23 @@ export default function MapScreen() {
     }
 
     useEffect(() => {
-        uploadImage();
-        (async () => {
-            let { status } = await Location.requestForegroundPermissionsAsync();
-            if (status !== 'granted') {
-                setErrorMsg('Permission to access location was denied');
-                return;
-            }
-            let locationa = await Location.watchPositionAsync({
-                accuracy: Location.Accuracy.High,
-            }, (newlocation) => {
-                let locationDiff = getDistanceFromLatLonInKm(location.latitude, location.longitude, newlocation.latitude, newlocation.longitude)
-                setLocDiff(locationDiff);
-                setLocation(newlocation.coords);
-                // console.log(location)
-            });
-        })().catch((err) => { console.log(err) });
+        setTimeout(()=>{
+            (async () => {
+                let { status } = await Location.requestForegroundPermissionsAsync();
+                if (status !== 'granted') {
+                    setErrorMsg('Permission to access location was denied');
+                    return;
+                }
+                let locationa = await Location.watchPositionAsync({
+                    accuracy: Location.Accuracy.High,
+                }, (newlocation) => {
+                    let locationDiff = getDistanceFromLatLonInKm(location.latitude, location.longitude, newlocation.latitude, newlocation.longitude)
+                    setLocDiff(locationDiff);
+                    setLocation(newlocation.coords);
+                    console.log(location)
+                });
+            })().catch((err) => { console.log(err) });
+        }, 5000)
     }, []);
 
     let myInterval;
@@ -119,7 +120,6 @@ export default function MapScreen() {
             else {
                 setClaimable('');
             }
-            console.log(claimable)
         }, 2000)
         return () => { clearInterval(myInterval); }
     }, [])

@@ -8,6 +8,20 @@ const CROSSMINT_KEY = "sk_staging_9tarQtZKZvn7k5a7ELqzLSHERe9EJ8ByUe7pjirgq1FzDp
 const FormData = require("form-data")
 const fetch = require("node-fetch")
 
+const express = require("express");
+const app = express();
+const port = 3000;
+
+app.use(express.json());
+
+app.get("/", function (req, res) {
+  res.send("Hello World!");
+});
+
+app.listen(port, function () {
+  console.log(`Example app listening on port ${port}!`);
+});
+
 const { MersenneTwister19937, bool, real } = require('random-js');
 
 function saveBase64Image(base64PngImage, filename) {
@@ -87,10 +101,6 @@ async function generateNFTs(layersPath, outputPath, text) {
         await mergeLayersAndSave(selection.images, text, path.join(outputPath, '1.png'));
     }
 }
-
-const layersPath = path.join(process.cwd(), 'layers');
-let outputPath = path.join(process.cwd(), 'output');
-// generateNFTs(20, layersPath, outputPath)
 
 const uploadImage = async (file) => {
     try {
@@ -177,8 +187,32 @@ const main = async (file, name, description, external_url, wallet) => {
     }
 }
 
-main("./output/0.png", "Test", "This is a test NFT!", "https://jamhacks.ca", "0xc9947a55bDD4b1E0fE27fDA4EEc68C74505307b7");
+// main("./output/0.png", "Test", "This is a test NFT!", "https://jamhacks.ca", "0xc9947a55bDD4b1E0fE27fDA4EEc68C74505307b7");
 
-let text = "TIM HORTONS";
+app.get("/generate_nft", async function (req, res) {
+    console.log(req.body)
+    let text = "Engineering 7";
+    const layersPath = path.join(process.cwd(), 'layers');
+    let outputPath = path.join(process.cwd(), 'output');    
+    // await generateNFTs(layersPath, outputPath, text);
+    // await main("./output/1.png", "Test", "This is a test NFT!", "https://jamhacks.ca", "0xc9947a55bDD4b1E0fE27fDA4EEc68C74505307b7");
+    res.send({"successful": true});
+});
 
-generateNFTs(layersPath, outputPath, text);
+
+
+test = async () => {
+    try {
+        const res = await fetch("http://localhost:3000/generate_nft", {
+          method: 'GET',
+          headers: {'Content-Type':'application/json'},
+          body: {"Hi": "HII"}
+        })
+        resData = await res.json()
+        console.log(resData)
+    } catch (error) {
+        console.log(error)
+      }
+}
+
+test()
