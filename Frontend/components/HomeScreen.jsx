@@ -26,14 +26,55 @@ export default function HomeScreen() {
           </View>
         </View>
       </View>
-      <Text className="text-xl font-semibold pt-5 pl-10">In Progress</Text>
+      <Text className="text-xl font-semibold pt-5 pl-12">In Progress</Text>
       <View className="items-center pt-3">
-        <View className="w-[80%] flex-row justify-around">
-          <View className="bg-[#CAD1F7] w-[140] h-[80] rounded-[30px] border-black border-2">
-
+        <View className="w-[90%] flex-row justify-around">
+          <View className="bg-[#CAD1F7] w-[150] h-[80] rounded-[30px] border-black border-2 pt-2 pl-4">
+              <Text className="font-light text-xs">Nature</Text>
+              <Text className="text-lg font-medium">Visit 5 Parks</Text>
+              <View className="bg-white h-1 mt-1 w-[90%]">
+                {/* Put percent completion here */}
+                <View className="bg-sky-400 h-1 w-[20%]"> 
+                </View>
+              </View>
           </View>
-          <View className="bg-[#CAD1F7] w-[140] h-[80] rounded-[30px] border-black border-2 shadow-black shadow-sm">
-
+          <View className="bg-[#CAD1F7] w-[150] h-[80] rounded-[30px] border-black border-2 pt-2 pl-4">
+              <Text className="font-light text-xs">Exploration</Text>
+              <Text className="text-lg font-medium">Visit 4 Towns</Text>
+              <View className="bg-white h-1 mt-1 w-[90%]">
+                {/* Put percent completion here */}
+                <View className="bg-sky-400 h-1 w-[75%]"> 
+                </View>
+              </View>
+          </View>
+        </View>
+      </View>
+      <View className="items-center justify-center pt-5">
+        <View className="bg-[#A1AEF2] h-[100] w-[85%] rounded-[30px] flex-row">
+          <View className="-[90%]">
+            <Text className="pt-4 pl-7 text-xl font-medium">Calories Burned</Text>
+            <Text className="pt-1 pl-8 text-xl font-bold color-[#543DE4] opacity-70">1000 kcal</Text>
+          </View>
+          <View className="items-center">
+            <Image source={require("../assets/running.png")} className="mt-4 ml-10 h-16 w-16"></Image>
+          </View>
+        </View>
+        <View className="bg-[#A1AEF2] h-[100] w-[85%] rounded-[30px] flex-row mt-5">
+          <View className="-[90%]">
+            <Text className="pt-4 pl-7 text-xl font-medium">NFTs Collected</Text>
+            <Text className="pt-1 pl-8 text-xl font-bold color-[#543DE4] opacity-70">0 NFTs</Text>
+          </View>
+          <View className="items-center">
+            <Image source={require("../assets/tree.png")} className="mt-4 ml-12 h-16 w-16"></Image>
+          </View>
+        </View>
+        <View className="bg-[#A1AEF2] h-[100] w-[85%] rounded-[30px] flex-row mt-5">
+          <View className="-[90%]">
+            <Text className="pt-4 pl-7 text-xl font-medium">Gas Money Saved</Text>
+            <Text className="pt-1 pl-8 text-xl font-bold color-[#543DE4] opacity-70">$157.28</Text>
+          </View>
+          <View className="items-center">
+            <Image source={require("../assets/gas.png")} className="mt-4 ml-5 h-20 w-20"></Image>
           </View>
         </View>
       </View>
