@@ -75,6 +75,8 @@ export default function MapScreen({ navigation }) {
 
     const claim = async () => {
         try {
+            navigation.navigate('Calendar', {CID: ''})
+
             const response = await fetch(
                 'https://e615-129-97-124-31.ngrok-free.app/generate_nft',
                 {
