@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import HomeScreen from './components/HomeScreen';
 import { TabBarIcon } from './components/TabBarIcon';
 import ProfileScreen from './components/ProfileScreen';
+import Milestone from './components/Milestone';
 import { Image } from 'react-native';
 import MapScreen from './components/MapScreen';
 
@@ -21,7 +22,7 @@ export default function App() {
             tabBarShowLabel: false,
             tabBarIcon: ({ focused }) => <TabBarIcon name={focused ? "home" : "home-outline"} color={focused ? "#1156cf" : "000000"} />,
           }} />
-        <Tab.Screen name="Calendar" component={TabBarIcon} options={
+        <Tab.Screen name="Calendar" component={Milestone} options={
           {
             headerShown: false,
             tabBarShowLabel: false,

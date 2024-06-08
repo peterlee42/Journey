@@ -1,10 +1,34 @@
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import {useEffect, useState} from 'react';
 
 export default function ProfileScreen() {
+
+    [nftList, setnftList] = useState([]);
+
+    useEffect(() => {
+        const response = fetch(
+            'https://e615-129-97-124-31.ngrok-free.app/all_images',
+            {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            }
+        ).then((response)=>{
+            response.json();
+        }).then((data)=>{
+            console.log(data)
+            setnftList(data.contents);
+            console.log(data.contents)
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }, [])
+
     return (
         <View style={styles.container}>
-
             <View style={styles.topbar}>
                 <Image style={styles.icon_img} source={require("../assets/profile.png")} />
                 <View>
@@ -19,19 +43,6 @@ export default function ProfileScreen() {
                 <View style={styles.box}>
                     <View className='NFT Collection'>
                         <ScrollView contentContainerStyle={styles.NFTs}>
-                            <Image source={require('../output/1.png')} style={styles.Image} />
-                            <Image source={require('../output/1.png')} style={styles.Image} />
-                            <Image source={require('../output/1.png')} style={styles.Image} />
-                            <Image source={require('../output/1.png')} style={styles.Image} />
-                            <Image source={require('../output/1.png')} style={styles.Image} />
-                            <Image source={require('../output/1.png')} style={styles.Image} />
-                            <Image source={require('../output/1.png')} style={styles.Image} />
-                            <Image source={require('../output/1.png')} style={styles.Image} />
-                            <Image source={require('../output/1.png')} style={styles.Image} />
-                            <Image source={require('../output/1.png')} style={styles.Image} />
-                            <Image source={require('../output/1.png')} style={styles.Image} />
-                            <Image source={require('../output/1.png')} style={styles.Image} />
-                            <Image source={require('../output/1.png')} style={styles.Image} />
                             <Image source={require('../output/1.png')} style={styles.Image} />
                         </ScrollView>
                     </View>
