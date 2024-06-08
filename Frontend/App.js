@@ -3,6 +3,7 @@ import HomeScreen from './components/HomeScreen';
 import { TabBarIcon } from './components/TabBarIcon';
 import ProfileScreen from './components/ProfileScreen';
 import { Image } from 'react-native';
+import MapScreen from './components/MapScreen';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
@@ -26,7 +27,7 @@ export default function App() {
             tabBarShowLabel: false,
             tabBarIcon: ({ focused }) => <TabBarIcon name={focused ? "calendar" : "calendar-outline"} color={focused ? "#1156cf" : "000000"} />,
           }} />
-        <Tab.Screen name="New" component={TabBarIcon} options={
+        <Tab.Screen name="New" component={MapScreen} options={
           {
             headerShown: false,
             tabBarShowLabel: false,
