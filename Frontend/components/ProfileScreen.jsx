@@ -7,24 +7,22 @@ export default function ProfileScreen() {
     [nftList, setnftList] = useState([]);
 
     useEffect(() => {
-        const response = fetch(
-            'https://e615-129-97-124-31.ngrok-free.app/all_images',
-            {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-            }
-        ).then((response)=>{
-            response.json();
-        }).then((data)=>{
-            console.log(data)
-            setnftList(data.contents);
-            console.log(data.contents)
-        }).catch((err)=>{
-            console.log(err);
-        })
+        const fetchCollection = async()=>{
+            const response = await fetch(
+                'https://e615-129-97-124-31.ngrok-free.app/all_images',
+                {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
+            const json = await response.json();
+            setnftList(json.contents[0]);
+        }
+        fetchCollection();
+       
     }, [])
 
     return (
@@ -43,7 +41,9 @@ export default function ProfileScreen() {
                 <View style={styles.box}>
                     <View className='NFT Collection'>
                         <ScrollView contentContainerStyle={styles.NFTs}>
-                            <Image source={require('../output/1.png')} style={styles.Image} />
+                            {nftList.map((nft, index) => (
+                                <Image key={index} style={styles.Image} source={{uri: `https://e615-129-97-124-31.ngrok-free.app/${nft}`}} />
+                            ))}
                         </ScrollView>
                     </View>
                 </View>

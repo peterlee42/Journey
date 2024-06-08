@@ -197,9 +197,7 @@ app.post("/generate_nft", async function (req, res) {
 });
 
 app.post("/all_images", function(req, res){
-    res.send(JSON.stringify({ "successful": true }));
-
-    // res.send(JSON.stringify({"contents": [fs.readdirSync("./output")]}));
+    res.send(JSON.stringify({"contents": [fs.readdirSync("./output")]}));
 })
 
 // test = async () => {
