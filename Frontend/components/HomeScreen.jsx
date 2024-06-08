@@ -29,7 +29,7 @@ export default function HomeScreen() {
       <Text className="text-xl font-semibold pt-5 pl-12">In Progress</Text>
       <View className="items-center pt-3">
         <View className="w-[90%] flex-row justify-around">
-          <View className="bg-[#CAD1F7] w-[150] h-[80] rounded-[30px] border-black border-2 pt-2 pl-4">
+          <View style={styles.bottomDropShadow} className="bg-[#CAD1F7] w-[150] h-[80] rounded-[30px] border-black border-2 pt-2 pl-4">
               <Text className="font-light text-xs">Nature</Text>
               <Text className="text-lg font-medium">Visit 5 Parks</Text>
               <View className="bg-white h-1 mt-1 w-[90%]">
@@ -38,7 +38,7 @@ export default function HomeScreen() {
                 </View>
               </View>
           </View>
-          <View className="bg-[#CAD1F7] w-[150] h-[80] rounded-[30px] border-black border-2 pt-2 pl-4">
+          <View style={styles.bottomDropShadow} className="bg-[#CAD1F7] w-[150] h-[80] rounded-[30px] border-black border-2 pt-2 pl-4">
               <Text className="font-light text-xs">Exploration</Text>
               <Text className="text-lg font-medium">Visit 4 Towns</Text>
               <View className="bg-white h-1 mt-1 w-[90%]">
@@ -122,6 +122,11 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 30,
     flexDirection: "row",
+    shadowColor: "#000000",
+    shadowOpacity: 0.4,
+    shadowOffset: {height: 4}
+  },
+  bottomDropShadow: {
     shadowColor: "#000000",
     shadowOpacity: 0.4,
     shadowOffset: {height: 4}
