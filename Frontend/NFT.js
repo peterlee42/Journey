@@ -183,32 +183,29 @@ const main = async (file, name, description, external_url, wallet) => {
     }
 }
 
-// main("./output/0.png", "Test", "This is a test NFT!", "https://jamhacks.ca", "0xc9947a55bDD4b1E0fE27fDA4EEc68C74505307b7");
 
 app.post("/generate_nft", async function (req, res) {
-    console.log(req.body)
-    let text = "Engineering 7";
     const layersPath = path.join(process.cwd(), 'layers');
     let outputPath = path.join(process.cwd(), 'output');
-    // await generateNFTs(layersPath, outputPath, text);
-    // await main("./output/1.png", "Test", "This is a test NFT!", "https://jamhacks.ca", "0xc9947a55bDD4b1E0fE27fDA4EEc68C74505307b7");
+    await generateNFTs(layersPath, outputPath, req.body.text);
+    await main(`./output/${req.body.text}.png`, req.body.text, `This is an NFT rewarded by the Journey app for visiting ${req.body.text}`, "https://jamhacks.ca", "0xc9947a55bDD4b1E0fE27fDA4EEc68C74505307b7");
     res.send(JSON.stringify({ "successful": true }));
 });
 
 
 
-test = async () => {
-    try {
-        const res = await fetch("http://localhost:3000/generate_nft", {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ "Hi": "HII" })
-        })
-        resData = await res.json()
-        console.log(resData)
-    } catch (error) {
-        console.log(error)
-    }
-}
+// test = async () => {
+//     try {
+//         const res = await fetch("http://localhost:3000/generate_nft", {
+//             method: 'POST',
+//             headers: { 'Content-Type': 'application/json' },
+//             body: JSON.stringify({ "text": "Church's Chicken" })
+//         })
+//         resData = await res.json()
+//         console.log(resData)
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 
-test()
+// test()
