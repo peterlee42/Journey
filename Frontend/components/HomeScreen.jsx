@@ -49,7 +49,7 @@ export default function HomeScreen() {
           </View>
         </View>
       </View>
-      <View className="items-center justify-center pt-5">
+      <View className="items-center justify-center pt-6">
         <View className="bg-[#A1AEF2] h-[100] w-[85%] rounded-[30px] flex-row">
           <View className="-[90%]">
             <Text className="pt-4 pl-7 text-xl font-medium">Calories Burned</Text>
@@ -59,7 +59,7 @@ export default function HomeScreen() {
             <Image source={require("../assets/running.png")} className="mt-4 ml-10 h-16 w-16"></Image>
           </View>
         </View>
-        <View className="bg-[#A1AEF2] h-[100] w-[85%] rounded-[30px] flex-row mt-5">
+        <View className="bg-[#A1AEF2] h-[100] w-[85%] rounded-[30px] flex-row mt-6">
           <View className="-[90%]">
             <Text className="pt-4 pl-7 text-xl font-medium">NFTs Collected</Text>
             <Text className="pt-1 pl-8 text-xl font-bold color-[#543DE4] opacity-70">0 NFTs</Text>
@@ -68,7 +68,7 @@ export default function HomeScreen() {
             <Image source={require("../assets/tree.png")} className="mt-4 ml-12 h-16 w-16"></Image>
           </View>
         </View>
-        <View className="bg-[#A1AEF2] h-[100] w-[85%] rounded-[30px] flex-row mt-5">
+        <View className="bg-[#A1AEF2] h-[100] w-[85%] rounded-[30px] flex-row mt-6">
           <View className="-[90%]">
             <Text className="pt-4 pl-7 text-xl font-medium">Gas Money Saved</Text>
             <Text className="pt-1 pl-8 text-xl font-bold color-[#543DE4] opacity-70">$157.28</Text>
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
   topbar: {
     marginHorizontal: 25,
-    marginTop: 50,
+    marginTop: 55,
     marginBottom: 20,
     flexDirection: "row",
   },
