@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
-import {key, JWT} from '../api-key.json'
+import { key, JWT } from '../api-key.json'
 
 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
     var R = 6371; // Radius of the earth in km
@@ -73,7 +73,6 @@ export default function MapScreen() {
     }
 
     useEffect(() => {
-        uploadImage();
         (async () => {
             let { status } = await Location.requestForegroundPermissionsAsync();
             if (status !== 'granted') {
