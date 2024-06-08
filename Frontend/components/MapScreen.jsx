@@ -42,6 +42,7 @@ export default function MapScreen() {
 
     const genPOIs = async () => {
         try {
+            console.log(location)
             const response = await fetch(
                 'https://places.googleapis.com/v1/places:searchNearby',
                 {
@@ -50,7 +51,8 @@ export default function MapScreen() {
                         Accept: 'application/json',
                         'Content-Type': 'application/json',
                         'X-Goog-FieldMask': "places.displayName,places.location",
-                        'X-Goog-Api-Key': key
+                        'X-Goog-Api-Key': key,
+                        "Cache-Control": "no-cache"
                     },
                     body: JSON.stringify({
                         'locationRestriction': {
@@ -85,46 +87,38 @@ export default function MapScreen() {
                 }, (newlocation) => {
                     let locationDiff = getDistanceFromLatLonInKm(location.latitude, location.longitude, newlocation.latitude, newlocation.longitude)
                     setLocDiff(locationDiff);
+                    console.log(`SETTING LOCATION TO`)
+                    console.log(newlocation)
                     setLocation(newlocation.coords);
-                    console.log(location)
                 });
             })().catch((err) => { console.log(err) });
-        }, 5000)
+        }, 1000)
     }, []);
 
-    let myInterval;
     useEffect(() => {
         genPOIs().then((json) => {
             setPOIs(json.places);
         });
-        myInterval = setInterval(() => {
-            if (locDiff > -1) {
-                genPOIs().then((json) => {
-                    setPOIs(json.places);
-                });
-            }
-            setLocDiff(0);
-            let minVal = 1000000000000;
-            let best = false;
-            POIs.map((val, index) => {
-                if (getDistanceFromLatLonInKm(location.latitude, location.longitude, val.location.latitude, val.location.longitude) <= 0.2) {
-                    if (getDistanceFromLatLonInKm(location.latitude, location.longitude, val.location.latitude, val.location.longitude) <= minVal) {
-                        minVal = getDistanceFromLatLonInKm(location.latitude, location.longitude, val.location.latitude, val.location.longitude) <= minVal
-                        best = val;
-                    }
-                }
-            });
-            if (best) {
-                setClaimable(best);
-            }
-            else {
-                setClaimable('');
-            }
-        }, 2000)
-        return () => { clearInterval(myInterval); }
-    }, [])
+    }, [location])
 
-    // console.log(POIs)
+    useEffect(()=>{
+        let minVal = 1000000000000;
+        let best = false;
+        POIs.map((val, index) => {
+            if (getDistanceFromLatLonInKm(location.latitude, location.longitude, val.location.latitude, val.location.longitude) <= 0.2) {
+                if (getDistanceFromLatLonInKm(location.latitude, location.longitude, val.location.latitude, val.location.longitude) <= minVal) {
+                    minVal = getDistanceFromLatLonInKm(location.latitude, location.longitude, val.location.latitude, val.location.longitude) <= minVal
+                    best = val;
+                }
+            }
+        });
+        if (best) {
+            setClaimable(best);
+        }
+        else {
+            setClaimable('');
+        }
+    }, [POIs, location]);
 
 
     return (
