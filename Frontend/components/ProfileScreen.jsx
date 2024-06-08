@@ -13,13 +13,18 @@ export default function ProfileScreen() {
                 </View>
             </View>
             <View style={styles.centered}>
+                <Text style={styles.box_text}>
+                    NFT Collection
+                </Text>
                 <View style={styles.box}>
-                    <View className="progress">
-                        <Text style={styles.box_text}>
-                            NFT Gallery
-                        </Text>
+                    <View style={styles.NFTs}>
+                        <Image source={require('../output/1.png')} style={styles.Image} />
+                        <Image source={require('../output/1.png')} style={styles.Image} />
+                        <Image source={require('../output/1.png')} style={styles.Image} />
+                        <Image source={require('../output/1.png')} style={styles.Image} />
+                        <Image source={require('../output/1.png')} style={styles.Image} />
+                        <Image source={require('../output/1.png')} style={styles.Image} />
                     </View>
-
                 </View>
             </View>
             <StatusBar style="auto" />
@@ -60,16 +65,15 @@ const styles = StyleSheet.create({
     },
     box: {
         width: '80%',
-        height: 250,
+        height: '85%',
         borderRadius: 20,
-        backgroundColor: "white",
+        backgroundColor: '#A1AEF2',
         paddingVertical: 15,
         paddingHorizontal: 30,
         flexDirection: "row",
         shadowColor: "#000000",
         shadowOpacity: 0.4,
         shadowOffset: { height: 4 },
-        justifyContent: "center"
     },
     bottomDropShadow: {
         shadowColor: "#000000",
@@ -81,14 +85,18 @@ const styles = StyleSheet.create({
         fontFamily: "Inter",
         fontWeight: "800",
         fontSize: 24,
-        marginBottom: 10
+        marginBottom: 10,
+        marginTop: 10
     },
-    button: {
-        borderRadius: 20,
-        width: 150,
-        height: 36,
-        backgroundColor: "#CAD1F7",
-        alignItems: "center",
-        justifyContent: "center"
+    NFTs: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-evenly'
     },
+    Image: {
+        width: 100,
+        height: 100,
+        margin: 10,
+    },
+
 });
