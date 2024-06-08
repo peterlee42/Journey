@@ -6,6 +6,8 @@ import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 
+import MapScreen from './components/MapScreen';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -14,19 +16,22 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Home" component={HomeScreen} options={
-          { headerShown: false, 
-            tabBarShowLabel: false, 
-            tabBarIcon: ({focused}) => <TabBarIcon name={focused ? "home" : "home-outline"} color={focused ? "#1156cf" : "000000"} />,
+          {
+            headerShown: false,
+            tabBarShowLabel: false,
+            tabBarIcon: ({ focused }) => <TabBarIcon name={focused ? "home" : "home-outline"} color={focused ? "#1156cf" : "000000"} />,
           }} />
         <Tab.Screen name="Calendar" component={TabBarIcon} options={
-          { headerShown: false,
-            tabBarShowLabel: false, 
-            tabBarIcon: ({focused}) => <TabBarIcon name={focused ? "calendar" : "calendar-outline"} color={focused ? "#1156cf" : "000000"} />,
+          {
+            headerShown: false,
+            tabBarShowLabel: false,
+            tabBarIcon: ({ focused }) => <TabBarIcon name={focused ? "calendar" : "calendar-outline"} color={focused ? "#1156cf" : "000000"} />,
           }} />
-        <Tab.Screen name="New" component={TabBarIcon} options={
-          { headerShown: false,
-            tabBarShowLabel: false, 
-            tabBarIcon: ({focused}) => (
+        <Tab.Screen name="New" component={MapScreen} options={
+          {
+            headerShown: false,
+            tabBarShowLabel: false,
+            tabBarIcon: ({ focused }) => (
               <View
                 style={{
                   position: 'absolute',
@@ -50,14 +55,16 @@ export default function App() {
             ),
           }} />
         <Tab.Screen name="Papers" component={TabBarIcon} options={
-          { headerShown: false,
-            tabBarShowLabel: false, 
-            tabBarIcon: ({focused}) => <TabBarIcon name={focused ? "document" : "document-outline"} color={focused ? "#1156cf" : "000000"} />,
+          {
+            headerShown: false,
+            tabBarShowLabel: false,
+            tabBarIcon: ({ focused }) => <TabBarIcon name={focused ? "document" : "document-outline"} color={focused ? "#1156cf" : "000000"} />,
           }} />
         <Tab.Screen name="Profile" component={TabBarIcon} options={
-          { headerShown: false,
-            tabBarShowLabel: false, 
-            tabBarIcon: ({focused}) => <TabBarIcon name={focused ? "person" : "person-outline"} color={focused ? "#1156cf" : "000000"} />,
+          {
+            headerShown: false,
+            tabBarShowLabel: false,
+            tabBarIcon: ({ focused }) => <TabBarIcon name={focused ? "person" : "person-outline"} color={focused ? "#1156cf" : "000000"} />,
           }} />
       </Tab.Navigator>
     </NavigationContainer>
