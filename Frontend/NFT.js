@@ -183,6 +183,7 @@ const main = async (file, name, description, external_url, wallet) => {
         fs.rename(`./output/${name}.png`, `./output/${imageCID}.png`, ()=>{
             
         })
+        return imageCID;
     } catch (error) {
         console.log(error)
     }
@@ -192,8 +193,8 @@ app.post("/generate_nft", async function (req, res) {
     const layersPath = path.join(process.cwd(), 'layers');
     let outputPath = path.join(process.cwd(), 'output');
     await generateNFTs(layersPath, outputPath, req.body.text);
-    await main(`./output/${req.body.text}.png`, req.body.text, `This is an NFT rewarded by the Journey app for visiting ${req.body.text}`, "https://jamhacks.ca", req.body.wallet);
-    res.send(JSON.stringify({ "successful": true }));
+    let toReturn = await main(`./output/${req.body.text}.png`, req.body.text, `This is an NFT rewarded by the Journey app for visiting ${req.body.text}`, "https://jamhacks.ca", req.body.wallet);
+    res.send(JSON.stringify({ "toReturn": toReturn }));
 });
 
 app.post("/all_images", function(req, res){

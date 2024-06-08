@@ -42,7 +42,6 @@ export default function MapScreen({ navigation }) {
 
     const genPOIs = async () => {
         try {
-            console.log(location)
             const response = await fetch(
                 'https://places.googleapis.com/v1/places:searchNearby',
                 {
@@ -76,8 +75,6 @@ export default function MapScreen({ navigation }) {
 
     const claim = async () => {
         try {
-            navigation.navigate('Calendar')
-
             const response = await fetch(
                 'https://e615-129-97-124-31.ngrok-free.app/generate_nft',
                 {
@@ -94,6 +91,7 @@ export default function MapScreen({ navigation }) {
             );
             const json = await response.json();
             console.log(json);
+            navigation.navigate('Calendar', {CID: json.toReturn})
             return json;
 
         } catch (error) {
@@ -114,8 +112,6 @@ export default function MapScreen({ navigation }) {
                 }, (newlocation) => {
                     let locationDiff = getDistanceFromLatLonInKm(location.latitude, location.longitude, newlocation.latitude, newlocation.longitude)
                     setLocDiff(locationDiff);
-                    console.log(`SETTING LOCATION TO`)
-                    console.log(newlocation)
                     setLocation(newlocation.coords);
                 });
             })().catch((err) => { console.log(err) });
