@@ -15,11 +15,11 @@ const port = 3000;
 app.use(express.json());
 
 app.get("/", function (req, res) {
-  res.send("Hello World!");
+    res.send("Hello World!");
 });
 
 app.listen(port, function () {
-  console.log(`Example app listening on port ${port}!`);
+    console.log(`Example app listening on port ${port}!`);
 });
 
 const { MersenneTwister19937, bool, real } = require('random-js');
@@ -89,17 +89,13 @@ function pickWeighted(mt, options) {
 async function generateNFTs(layersPath, outputPath, text) {
     const content = require(path.join(layersPath, 'content'));
 
-    let generated = new Set();
 
     console.log(`Generating NFT ...`);
     let selection = randomlySelectLayers(layersPath, content.layers);
     const traits = JSON.stringify(selection.selectedTraits);
-    if (generated.has(traits)) {
-        console.log('Duplicate detected. Retry...');
-    } else {
-        generated.add(traits);
-        await mergeLayersAndSave(selection.images, text, path.join(outputPath, '1.png'));
-    }
+
+    await mergeLayersAndSave(selection.images, text, path.join(outputPath, `${text}.png`));
+
 }
 
 const uploadImage = async (file) => {
@@ -193,10 +189,10 @@ app.post("/generate_nft", async function (req, res) {
     console.log(req.body)
     let text = "Engineering 7";
     const layersPath = path.join(process.cwd(), 'layers');
-    let outputPath = path.join(process.cwd(), 'output');    
+    let outputPath = path.join(process.cwd(), 'output');
     // await generateNFTs(layersPath, outputPath, text);
     // await main("./output/1.png", "Test", "This is a test NFT!", "https://jamhacks.ca", "0xc9947a55bDD4b1E0fE27fDA4EEc68C74505307b7");
-    res.send(JSON.stringify({"successful": true}));
+    res.send(JSON.stringify({ "successful": true }));
 });
 
 
@@ -204,15 +200,15 @@ app.post("/generate_nft", async function (req, res) {
 test = async () => {
     try {
         const res = await fetch("http://localhost:3000/generate_nft", {
-          method: 'POST',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify({"Hi": "HII"})
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ "Hi": "HII" })
         })
         resData = await res.json()
         console.log(resData)
     } catch (error) {
         console.log(error)
-      }
+    }
 }
 
 test()
