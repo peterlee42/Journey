@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ProfileScreen() {
 
     [nftList, setnftList] = useState([]);
 
     useEffect(() => {
-        const fetchCollection = async()=>{
+        const fetchCollection = async () => {
             const response = await fetch(
                 'https://918a-129-97-124-31.ngrok-free.app/all_images',
                 {
@@ -22,7 +22,7 @@ export default function ProfileScreen() {
             setnftList(json.contents[0]);
         }
         fetchCollection();
-       
+
     }, [])
 
     return (
@@ -42,7 +42,7 @@ export default function ProfileScreen() {
                     <View className='NFT Collection'>
                         <ScrollView contentContainerStyle={styles.NFTs}>
                             {nftList.map((nft, index) => (
-                                <Image key={index} style={styles.Image} source={{uri: `https://e615-129-97-124-31.ngrok-free.app/${nft}`}} />
+                                <Image key={index} style={styles.Image} source={{ uri: `https://e615-129-97-124-31.ngrok-free.app/${nft}` }} />
                             ))}
                         </ScrollView>
                     </View>
