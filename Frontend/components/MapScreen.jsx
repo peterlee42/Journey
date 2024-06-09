@@ -60,7 +60,7 @@ export default function MapScreen({ navigation }) {
                                     "latitude": location.latitude,
                                     "longitude": location.longitude
                                 },
-                                "radius": 5000
+                                "radius": 3000
                             }
                         }
                     }),
