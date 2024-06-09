@@ -106,7 +106,7 @@ module.exports = {
                 {
                     name: "Rarity3",
                     file: "Rarity/gold.png",
-                    weight: 1
+                    weight: 2
                 }
             ]
         },
