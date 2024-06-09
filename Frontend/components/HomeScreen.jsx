@@ -11,7 +11,7 @@ export default function HomeScreen() {
   useEffect(() => {
     const fetchCollection = async () => {
       const response = await fetch(
-        'https://918a-129-97-124-31.ngrok-free.app/all_images',
+        'https://9dda-129-97-124-31.ngrok-free.app/all_images',
         {
           method: 'POST',
           headers: {

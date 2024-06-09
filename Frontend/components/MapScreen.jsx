@@ -78,7 +78,7 @@ export default function MapScreen({ navigation }) {
             navigation.navigate('Calendar', { CID: '' })
 
             const response = await fetch(
-                'https://918a-129-97-124-31.ngrok-free.app/generate_nft',
+                'https://9dda-129-97-124-31.ngrok-free.app/generate_nft',
                 {
                     method: 'POST',
                     headers: {
