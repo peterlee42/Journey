@@ -42,7 +42,7 @@ export default function ProfileScreen() {
                     <View className='NFT Collection'>
                         <ScrollView contentContainerStyle={styles.NFTs}>
                             {nftList.map((nft, index) => (
-                                <Image key={index} style={styles.Image} source={{ uri: `https://e615-129-97-124-31.ngrok-free.app/${nft}` }} />
+                                <Image key={index} style={styles.Image} source={{ uri: `https://918a-129-97-124-31.ngrok-free.app/${nft}` }} />
                             ))}
                         </ScrollView>
                     </View>
