@@ -88,7 +88,27 @@ module.exports = {
                     weight: 1
                 }
             ]
+        },
+        {
+            name: "Rarity",
+            probability: 1.0,
+            options: [
+                {
+                    name: "Gold",
+                    files: "Rarity/gold.png",
+                    weight: 1
+                },
+                {
+                    name: "Silver",
+                    files: "Rarity/silver.png",
+                    weight: 7
+                },
+                {
+                    name: "Bronze",
+                    files: "Rarity/bronze.png",
+                    weight: 12
+                }
+            ]
         }
-
     ]
 };
