@@ -9,7 +9,7 @@ export default function ProfileScreen() {
     useEffect(() => {
         const fetchCollection = async()=>{
             const response = await fetch(
-                'https://e615-129-97-124-31.ngrok-free.app/all_images',
+                'https://918a-129-97-124-31.ngrok-free.app/all_images',
                 {
                     method: 'POST',
                     headers: {
