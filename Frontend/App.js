@@ -27,7 +27,7 @@ export default function App() {
             headerShown: false,
             tabBarShowLabel: false,
             tabBarIcon: ({ focused }) => <TabBarIcon name={focused ? "calendar" : "calendar-outline"} color={focused ? "#1156cf" : "000000"} />,
-          }} />
+          }} initialParams={{CID: ''}}/>
         <Tab.Screen name="New" component={MapScreen} options={
           {
             headerShown: false,
